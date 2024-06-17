@@ -11,11 +11,11 @@ public partial class Role
 
     public int LocationId { get; set; }
 
-    public int? DepartmentId { get; set; }
+    public int DepartmentId { get; set; }
 
     public string Description { get; set; } = null!;
 
-    public virtual Department? Department { get; set; }
+    public virtual Department Department { get; set; } = null!;
 
     public virtual Location Location { get; set; } = null!;
 }

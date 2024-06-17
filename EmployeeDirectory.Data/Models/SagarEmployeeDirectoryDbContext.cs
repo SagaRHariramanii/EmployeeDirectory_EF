@@ -26,13 +26,13 @@ public partial class SagarEmployeeDirectoryDbContext : DbContext
     public virtual DbSet<Role> Roles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source=LAPTOP-UIJC9IGA;Initial Catalog=Sagar_EmployeeDirectory_DB;Integrated Security=True;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=sql-dev;Initial Catalog=Sagar_EmployeeDirectory_DB;Integrated Security=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Department>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Departme__3214EC27F39D6A95");
+            entity.HasKey(e => e.Id).HasName("PK__Departme__3214EC27E6F9F68B");
 
             entity.ToTable("Department");
 
@@ -44,11 +44,11 @@ public partial class SagarEmployeeDirectoryDbContext : DbContext
 
         modelBuilder.Entity<Employee>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Employee__3214EC27CF6DC337");
+            entity.HasKey(e => e.Id).HasName("PK__Employee__3214EC27724C1549");
 
             entity.ToTable("Employee");
 
-            entity.HasIndex(e => e.EmpId, "UQ__Employee__AF2DBB98E5F1685B").IsUnique();
+            entity.HasIndex(e => e.EmpId, "UQ__Employee__AF2DBB98C97E9229").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.CreatedBy)
@@ -78,16 +78,16 @@ public partial class SagarEmployeeDirectoryDbContext : DbContext
             entity.HasOne(d => d.Manager).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.ManagerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Employee__Manage__4222D4EF");
+                .HasConstraintName("FK__Employee__Manage__656C112C");
 
             entity.HasOne(d => d.Project).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.ProjectId)
-                .HasConstraintName("FK__Employee__Projec__4316F928");
+                .HasConstraintName("FK__Employee__Projec__571DF1D5");
         });
 
         modelBuilder.Entity<Location>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Location__3214EC279F2C3715");
+            entity.HasKey(e => e.Id).HasName("PK__Location__3214EC2786EECA1E");
 
             entity.ToTable("Location");
 
@@ -99,7 +99,7 @@ public partial class SagarEmployeeDirectoryDbContext : DbContext
 
         modelBuilder.Entity<Manager>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Manager__3214EC271B46CF6D");
+            entity.HasKey(e => e.Id).HasName("PK__Manager__3214EC2756F3D9EA");
 
             entity.ToTable("Manager");
 
@@ -108,12 +108,12 @@ public partial class SagarEmployeeDirectoryDbContext : DbContext
             entity.HasOne(d => d.Employee).WithMany(p => p.Managers)
                 .HasForeignKey(d => d.EmployeeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Manager__Employe__440B1D61");
+                .HasConstraintName("FK__Manager__Employe__66603565");
         });
 
         modelBuilder.Entity<Project>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Project__3214EC27734CDFB4");
+            entity.HasKey(e => e.Id).HasName("PK__Project__3214EC27BB90EBF9");
 
             entity.ToTable("Project");
 
@@ -125,7 +125,7 @@ public partial class SagarEmployeeDirectoryDbContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Role__3214EC27A1DE36C7");
+            entity.HasKey(e => e.Id).HasName("PK__Role__3214EC2774ECB976");
 
             entity.ToTable("Role");
 
@@ -139,12 +139,13 @@ public partial class SagarEmployeeDirectoryDbContext : DbContext
 
             entity.HasOne(d => d.Department).WithMany(p => p.Roles)
                 .HasForeignKey(d => d.DepartmentId)
-                .HasConstraintName("FK__Role__Department__44FF419A");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Role__Department__6C190EBB");
 
             entity.HasOne(d => d.Location).WithMany(p => p.Roles)
                 .HasForeignKey(d => d.LocationId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Role__LocationId__45F365D3");
+                .HasConstraintName("FK__Role__Location__6B24EA82");
         });
 
         OnModelCreatingPartial(modelBuilder);

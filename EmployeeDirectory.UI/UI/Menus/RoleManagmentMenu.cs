@@ -70,8 +70,8 @@ namespace EmployeeDirectory.UI.Menus
                 i++;
             }
             Console.Write("\n"+Constant.enterLocation);
-            int selectedOption = int.Parse(Console.ReadLine()!);
-            if (selectedOption > (locations.Count))
+            int selectedOption = Parser.ParseToInt(Console.ReadLine()!);
+            if (selectedOption > (locations.Count) || selectedOption<=0)
             {
                 Console.WriteLine(Constant.invalidChoice);
                 int empLocationId = GetLocationId();

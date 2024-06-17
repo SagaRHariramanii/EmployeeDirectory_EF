@@ -281,7 +281,7 @@ namespace EmployeeDirectory.UI.Menus
             List<Manager> managerList = _employeeController.GetMangers();
             foreach (Manager manager in managerList)
             {
-                Console.WriteLine(i + ". " + manager.Name);
+                Console.WriteLine(i + ". " + _employeeController.GetManagerName(manager.ID));
                 i++;
             }
             Console.Write(Constant.enterManager);

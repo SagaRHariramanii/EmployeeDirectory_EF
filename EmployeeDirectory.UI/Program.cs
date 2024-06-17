@@ -1,5 +1,4 @@
 ﻿using EmployeeDirectory.UI;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using EmployeeDirectory.Services.Contract;
 using EmployeeDirectory.Services;
@@ -21,19 +20,6 @@ namespace MainMenu
         {
             //makes configured services available throughout an app.
             var services = new ServiceCollection();
-            //Definition of an interface for objects that can create a configuration.creating the configuration that's used at run time from the configuration files you provide.
-            var configBuilder = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            //Getting the connection string from the JSON
-            string connectionString = configBuilder.GetSection("ConnectionStrings")["MyDBConnectionString"]!;
-            if (connectionString != null)
-            { 
-                //service is created when requested 
-                services.AddScoped<IDbConnection,DbConnection>(db => new DbConnection(connectionString));
-            }
-            else
-            {
-                throw new Exception("Error");
-            }
             //service is created when requested. Registering the dependencies here in the service block
             services.AddAutoMapper(typeof(MapperProfile));
             services.AddScoped<IEmployeeHandler, EmployeeHandler>();

@@ -19,7 +19,7 @@ namespace EmployeeDirectory.Data
         {
             using (var context=new SagarEmployeeDirectoryDbContext())
             {
-                List<Employee> employees = context.Employees.ToList();
+                List<Employee> employees = context.Employees.Where(e=>e.IsDeleted!=true).ToList();
                 return employees;
             }
         }
