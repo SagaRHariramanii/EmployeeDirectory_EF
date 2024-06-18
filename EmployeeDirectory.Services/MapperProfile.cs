@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using EmployeeDirectory.Data.Models;
-using EmployeeDirectory.Services.Contract;
 
 namespace EmployeeDirectory.Services
 {

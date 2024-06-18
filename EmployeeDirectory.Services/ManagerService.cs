@@ -7,9 +7,10 @@ namespace EmployeeDirectory.Services
 {
     public class ManagerService : IManagerService
     {
-        readonly IManagerHandler _managerHandler;
+        readonly IManagerRepositary _managerHandler;
         readonly IMapper _mapper;
-        public ManagerService(IManagerHandler managerHandler,IMapper mapper)
+
+        public ManagerService(IManagerRepositary managerHandler,IMapper mapper)
         {
             this._managerHandler = managerHandler;
             this._mapper = mapper;

@@ -7,10 +7,10 @@ namespace EmployeeDirectory.Controller
 {
     public class EmployeeController : IEmployeeController
     {
-        IEmployeeService _employeeService;
-        IValidationService _validationService;
-        IManagerService _managerService;
-        IProjectService _projectService;
+        readonly IEmployeeService _employeeService;
+        readonly IValidationService _validationService;
+        readonly IManagerService _managerService;
+        readonly IProjectService _projectService;
         public EmployeeController(IEmployeeService employeeService, IValidationService validationService, IManagerService managerService, IProjectService projectService)
         {
             this._employeeService = employeeService;

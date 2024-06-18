@@ -7,10 +7,10 @@ namespace EmployeeDirectory.Controller
 {
     public class RoleController : IRoleController
     {
-        IRoleService _roleService;
-        IDepartmentService _departmentService;
-        ILocationService _locationService;
-        IValidationService _validationService;
+        readonly IRoleService _roleService;
+        readonly IDepartmentService _departmentService;
+        readonly ILocationService _locationService;
+        readonly IValidationService _validationService;
         public RoleController(IRoleService roleService, IValidationService validationService, ILocationService locationService,IDepartmentService departmentService)
         {
             this._roleService = roleService;

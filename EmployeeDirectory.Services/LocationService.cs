@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using EmployeeDirectory.Data;
 using EmployeeDirectory.Data.Contract;
 using EmployeeDirectory.Models;
 using EmployeeDirectory.Services.Contract;
@@ -8,22 +7,22 @@ namespace EmployeeDirectory.Services
 {
     public class LocationService : ILocationService
     {
-        ILocationHandler _locationHandler;
-        IMapper _mapper;
-        public LocationService(ILocationHandler locationHandler,IMapper mapper)
+        readonly IMapper _mapper;
+        readonly IGenericRepositary<Data.Models.Location> _genericRepositary;
+        public LocationService(IMapper mapper, IGenericRepositary<Data.Models.Location> genericRepositary)
         {
-            this._locationHandler = locationHandler;
             this._mapper = mapper;
+            this._genericRepositary = genericRepositary;
         }
         public List<Location> GetLocations()
         {
-            var locations = _mapper.Map<List<Data.Models.Location>, List<Models.Location>>(_locationHandler.GetData());
+            var locations = _mapper.Map<List<Data.Models.Location>, List<Models.Location>>(_genericRepositary.GetData());
             return locations;
 
         }
         public string? GetLocationName(int id)
         {
-            return _locationHandler.GetLocationNameById(id);
+            return _genericRepositary.GetNameById(id);
         }
     }
 }

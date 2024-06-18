@@ -1,11 +1,11 @@
 ﻿using EmployeeDirectory.Data.Contract;
 using EmployeeDirectory.Data.Models;
 
-namespace EmployeeDirectory.Data
+namespace EmployeeDirectory.Data.Repositary
 {
-    public class RoleHandler : IRoleHandler
+    public class RoleRepositary : IRoleRepositary
     {
-        public void AddRole(Role role)
+        public void AddRole(Models.Role role)
         {
             using (var context = new SagarEmployeeDirectoryDbContext())
             {
@@ -13,20 +13,20 @@ namespace EmployeeDirectory.Data
                 context.SaveChanges();
             }
         }
-        public List<Role> GetRoles()
+        public List<Models.Role> GetRoles()
         {
-            using(var context = new SagarEmployeeDirectoryDbContext())
+            using (var context = new SagarEmployeeDirectoryDbContext())
             {
-                List<Role> roles = context.Roles.ToList();
+                List<Models.Role> roles = context.Roles.ToList();
                 return roles;
             }
         }
         public void Update(int roleId, string fieldName, string fieldInputData)
         {
-            using(var context=new SagarEmployeeDirectoryDbContext())
+            using (var context = new SagarEmployeeDirectoryDbContext())
             {
-                Role role = context.Roles.FirstOrDefault(e => e.Id == roleId)!;
-                var propertyInfo = typeof(Role).GetProperty(fieldName.ToString())!;
+                Models.Role role = context.Roles.FirstOrDefault(e => e.Id == roleId)!;
+                var propertyInfo = typeof(Models.Role).GetProperty(fieldName.ToString())!;
                 propertyInfo.SetValue(role, fieldInputData);
                 context.SaveChanges();
             }
@@ -34,16 +34,16 @@ namespace EmployeeDirectory.Data
         public int GetRoleCount()
         {
             int count;
-            using(var context= new SagarEmployeeDirectoryDbContext())
+            using (var context = new SagarEmployeeDirectoryDbContext())
             {
                 count = context.Roles.Count();
                 return count;
             }
         }
-        public Role? GetRoleById(int roleId)
+        public Models.Role? GetRoleById(int roleId)
         {
-            Role? roleDetail;
-            using(var context = new SagarEmployeeDirectoryDbContext())
+            Models.Role? roleDetail;
+            using (var context = new SagarEmployeeDirectoryDbContext())
             {
                 roleDetail = context.Roles.FirstOrDefault(r => r.Id == roleId);
                 return roleDetail;
@@ -52,18 +52,18 @@ namespace EmployeeDirectory.Data
         public int GetRoleId(string roleName, int location, int department)
         {
             int roleId;
-            using(var context= new SagarEmployeeDirectoryDbContext())
+            using (var context = new SagarEmployeeDirectoryDbContext())
             {
-                roleId = context.Roles.FirstOrDefault(e=>e.Name==roleName&& e.LocationId==location && e.DepartmentId==department)!.Id;
+                roleId = context.Roles.FirstOrDefault(e => e.Name == roleName && e.LocationId == location && e.DepartmentId == department)!.Id;
                 return roleId;
             }
 
         }
         public void Delete(int roleId)
         {
-            using(var Context= new SagarEmployeeDirectoryDbContext())
+            using (var Context = new SagarEmployeeDirectoryDbContext())
             {
-                Role role = Context.Roles.FirstOrDefault(e=> e.Id==roleId)!;
+                Models.Role role = Context.Roles.FirstOrDefault(e => e.Id == roleId)!;
                 Context.Roles.Remove(role);
                 Context.SaveChanges();
             }

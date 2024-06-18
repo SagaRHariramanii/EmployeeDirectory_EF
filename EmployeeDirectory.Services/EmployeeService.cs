@@ -8,9 +8,9 @@ namespace EmployeeDirectory.Services
 
     public class EmployeeService : IEmployeeService
     {
-        private readonly IEmployeeHandler _employeeHandler;
-        private readonly IMapper _mapper;
-        public EmployeeService(IEmployeeHandler employeeHandler,IMapper mapper)
+        readonly IEmployeeRepositary _employeeHandler;
+        readonly IMapper _mapper;
+        public EmployeeService(IEmployeeRepositary employeeHandler,IMapper mapper)
         {
             this._employeeHandler = employeeHandler;
             this._mapper = mapper;

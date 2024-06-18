@@ -2,7 +2,7 @@
 
 namespace EmployeeDirectory.Data.Contract
 {
-    public interface IRoleHandler
+    public interface IRoleRepositary
     {
         void AddRole(Role role);
         List<Role> GetRoles();

@@ -8,8 +8,8 @@ namespace EmployeeDirectory.UI.Menus
 {
     public class EmployeeManagementMenu:IEmployeeManagementMenu
     {
-        IEmployeeController _employeeController;
-        IRoleController _roleController;
+        readonly IEmployeeController _employeeController;
+        readonly IRoleController _roleController;
         
         public EmployeeManagementMenu(IEmployeeController employeeController,IRoleController roleController)
         {

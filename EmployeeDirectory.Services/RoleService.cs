@@ -6,9 +6,9 @@ namespace EmployeeDirectory.Services
 {
     public class RoleService : IRoleService
     {
-        IRoleHandler _roleHandler;
-        IMapper _mapper;
-        public RoleService(IRoleHandler roleHandler,IMapper mapper)
+        readonly IRoleRepositary _roleHandler;
+        readonly IMapper _mapper;
+        public RoleService(IRoleRepositary roleHandler,IMapper mapper)
         {
             this._roleHandler = roleHandler;
             this._mapper = mapper;

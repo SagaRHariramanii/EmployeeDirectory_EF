@@ -8,7 +8,7 @@ namespace EmployeeDirectory.UI.Menus
 
     public class RoleManagmentMenu:IRoleManagmentMenu
     {
-        IRoleController _roleController;
+        readonly IRoleController _roleController;
         public RoleManagmentMenu(IRoleController roleController)
         {
             _roleController = roleController;

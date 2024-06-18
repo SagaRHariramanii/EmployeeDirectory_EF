@@ -2,7 +2,7 @@
 
 namespace EmployeeDirectory.Data.Contract
 {
-    public interface IEmployeeHandler
+    public interface IEmployeeRepositary
     {
         void AddEmployee(Models.Employee employee);
         List<Models.Employee> GetEmployees();

@@ -2,7 +2,7 @@
 
 namespace EmployeeDirectory.Data.Contract
 {
-    public interface IManagerHandler
+    public interface IManagerRepositary
     {
         List<Manager> GetManagers();
         string? GetMangerNameById(int id);

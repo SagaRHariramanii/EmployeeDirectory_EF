@@ -5,8 +5,8 @@ namespace EmployeeDirectory.UI
 {
     public class MainMenuOptions:IMainMenu
     {
-        IEmployeeManagementMenu _employeeManagementMenu;
-        IRoleManagmentMenu _roleManagmentMenu;
+        readonly IEmployeeManagementMenu _employeeManagementMenu;
+        readonly IRoleManagmentMenu _roleManagmentMenu;
         public MainMenuOptions(IEmployeeManagementMenu employeeManagementMenu,IRoleManagmentMenu roleManagmentMenu)
         {
             this._employeeManagementMenu = employeeManagementMenu;

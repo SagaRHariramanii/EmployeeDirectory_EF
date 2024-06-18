@@ -3,13 +3,13 @@ using Microsoft.Extensions.DependencyInjection;
 using EmployeeDirectory.Services.Contract;
 using EmployeeDirectory.Services;
 using EmployeeDirectory.Data.Contract;
-using EmployeeDirectory.Data;
 using EmployeeDirectory.Controller.Contract;
 using EmployeeDirectory.Controller;
 using EmployeeDirectory.UI.Contract;
 using EmployeeDirectory.UI.Menus;
 using EmployeeDirectory.Services.Common;
 using EmployeeDirectory.Data.Models;
+using EmployeeDirectory.Data.Repositary;
 
 namespace MainMenu
 {
@@ -22,12 +22,10 @@ namespace MainMenu
             var services = new ServiceCollection();
             //service is created when requested. Registering the dependencies here in the service block
             services.AddAutoMapper(typeof(MapperProfile));
-            services.AddScoped<IEmployeeHandler, EmployeeHandler>();
-            services.AddScoped<IRoleHandler, RoleHandler>();
-            services.AddScoped<IManagerHandler, ManagerHandler>();
-            services.AddScoped<IProjectHandler, ProjectHandler>();
-            services.AddScoped<IDepartmentHandler, DepartmentHandler>();
-            services.AddScoped<ILocationHandler, LocationHandler>();
+            services.AddScoped<IEmployeeRepositary, EmployeeRepositary>();
+            services.AddScoped<IRoleRepositary, RoleRepositary>();
+            services.AddScoped<IManagerRepositary, ManagerRepositary>();
+            services.AddScoped(typeof(IGenericRepositary<>), typeof(GenericRepositary<>));
             services.AddScoped<IValidationService, ValidationService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IRoleService, RoleService>();

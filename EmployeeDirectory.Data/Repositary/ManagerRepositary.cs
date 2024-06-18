@@ -2,23 +2,23 @@
 using EmployeeDirectory.Data.Models;
 using Microsoft.Data.SqlClient;
 
-namespace EmployeeDirectory.Data
+namespace EmployeeDirectory.Data.Repositary
 {
-    public class ManagerHandler : IManagerHandler
+    public class ManagerRepositary : IManagerRepositary
     {
-        public List<Manager> GetManagers()
+        public List<Models.Manager> GetManagers()
         {
-            using(var context = new SagarEmployeeDirectoryDbContext())
+            using (var context = new SagarEmployeeDirectoryDbContext())
             {
-                List<Manager> managers = context.Managers.ToList();
-                return managers ;
+                List<Models.Manager> managers = context.Managers.ToList();
+                return managers;
             }
         }
 
         public string? GetMangerNameById(int id)
         {
             string? mangerName;
-            using(var context = new SagarEmployeeDirectoryDbContext())
+            using (var context = new SagarEmployeeDirectoryDbContext())
             {
                 mangerName = context.Managers.Where(m => m.Id == id)
                     .Select(m => m.Employee.FirstName + " " + m.Employee.LastName)
